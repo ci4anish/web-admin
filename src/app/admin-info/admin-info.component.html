@@ -1,0 +1,44 @@
+<mat-expansion-panel [expanded]="true">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Edit profile
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <form class="form" [formGroup]="userInfoForm" (ngSubmit)="saveInfo()">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="First name" formControlName="firstName">
+      <mat-error *ngIf="f.firstName.errors && f.firstName.errors.required">
+        First name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Last name" formControlName="lastName">
+      <mat-error *ngIf="f.lastName.errors && f.lastName.errors.required">
+        Last name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Email" formControlName="email">
+      <mat-error *ngIf="f.email.errors && f.email.errors.email && !f.email.errors.required">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="f.email.errors && f.email.errors.required">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <span matPrefix>+1 &nbsp;</span>
+      <input type="tel" matInput placeholder="Telephone" formControlName="tel">
+      <mat-error *ngIf="f.tel.errors && f.tel.errors.required">
+        Telephone is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-button>Save</button>
+  </form>
+
+</mat-expansion-panel>
