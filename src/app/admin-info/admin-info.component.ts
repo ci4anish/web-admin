@@ -22,7 +22,7 @@ export class AdminInfoComponent implements OnInit {
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
-            tel: ['', [Validators.required]]
+            phone: ['', [Validators.required]]
         });
     }
 

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AppComponent } from './app.component';
 
@@ -20,7 +20,8 @@ import { AdminInfoModule } from "./admin-info/admin-info.module";
       MatToolbarModule,
       MatIconModule,
       AdminTeamModule,
-      AdminInfoModule
+      AdminInfoModule,
+      MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

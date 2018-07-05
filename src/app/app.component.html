@@ -1,15 +1,28 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<mat-toolbar color="primary">
-  <span>Web admin</span>
-  <span class="example-spacer"></span>
-  <mat-icon class="example-icon">notifications</mat-icon>
-</mat-toolbar>
-<div class="content">
-  <div class="admin-info">
-    <app-admin-info></app-admin-info>
-  </div>
-  <div class="team-list">
-    <app-admin-team></app-admin-team>
-  </div>
-</div>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="over" position="end" [(opened)]="showNotifications">
+    <mat-toolbar color="primary">
+      <span>Notifications</span>
+      <span class="example-spacer"></span>
+      <mat-icon class="example-icon" (click)="sidenav.close()">close</mat-icon>
+    </mat-toolbar>
+    <div style="width: 400px">
+      Here will be notifications
+    </div>
+  </mat-sidenav>
 
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <span>Web admin</span>
+      <span class="example-spacer"></span>
+      <mat-icon class="example-icon" (click)="sidenav.toggle()">notifications</mat-icon>
+    </mat-toolbar>
+    <div class="content">
+      <div class="admin-info">
+        <app-admin-info></app-admin-info>
+      </div>
+      <div class="team-list">
+        <app-admin-team></app-admin-team>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
