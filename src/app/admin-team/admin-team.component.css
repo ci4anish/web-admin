@@ -1,0 +1,21 @@
+.team-title{
+    padding: 15px 10px 15px;
+    font-size: 17px;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    margin-bottom: 10px;
+}
+
+.team-list{
+    max-height: 400px;
+    overflow: scroll;
+    padding-top: 0;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.filter-field{
+    width: 300px;
+    padding: 0 10px;
+}

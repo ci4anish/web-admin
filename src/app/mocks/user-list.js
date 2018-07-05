@@ -1,4 +1,4 @@
-[
+export const UserList = [
   {
     "id": 194,
     "firstName": "Leon",

@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 import { AdminTeamModule } from "./admin-team/admin-team.module";
 import { AdminInfoModule } from "./admin-info/admin-info.module";
+import { UserService } from "./user-service.service";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AdminInfoModule } from "./admin-info/admin-info.module";
       AdminInfoModule,
       MatSidenavModule
   ],
-  providers: [],
+  exports: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

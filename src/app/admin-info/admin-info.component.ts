@@ -1,23 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import {logger} from "codelyzer/util/logger";
+import { User } from '../interfaces';
 
 @Component({
   selector: 'app-admin-info',
   templateUrl: './admin-info.component.html',
   styleUrls: ['./admin-info.component.css']
 })
-export class AdminInfoComponent implements OnInit {
+export class AdminInfoComponent implements OnInit, OnChanges {
+
+    @Input() user: User;
 
     userInfoForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder) { }
-
-    get f() {
-        return this.userInfoForm.controls;
-    }
-
-    ngOnInit() {
+    constructor(private formBuilder: FormBuilder) {
         this.userInfoForm = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
@@ -26,6 +22,25 @@ export class AdminInfoComponent implements OnInit {
         });
     }
 
+    get f() {
+        return this.userInfoForm.controls;
+    }
+
+    ngOnInit() {
+    }
+
+    ngOnChanges(changes: SimpleChanges){
+        if(changes.user){
+            this.userInfoForm.setValue({
+                firstName:    this.user.firstName,
+                lastName: this.user.lastName,
+                email: this.user.email,
+                phone: this.user.phone
+            });
+        }
+    }
+
+    //TODO save info to backend
     saveInfo(){
         if (this.userInfoForm.invalid) {
             return;

@@ -2,7 +2,7 @@
   <mat-sidenav #sidenav mode="over" position="end" [(opened)]="showNotifications">
     <mat-toolbar color="primary">
       <span>Notifications</span>
-      <span class="example-spacer"></span>
+      <span class="spacer"></span>
       <mat-icon class="example-icon" (click)="sidenav.close()">close</mat-icon>
     </mat-toolbar>
     <div style="width: 400px">
@@ -10,19 +10,17 @@
     </div>
   </mat-sidenav>
 
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
+  <mat-sidenav-content class="admin-page">
+    <mat-toolbar color="primary" class="admin-header">
       <span>Web admin</span>
-      <span class="example-spacer"></span>
+      <span class="spacer"></span>
       <mat-icon class="example-icon" (click)="sidenav.toggle()">notifications</mat-icon>
     </mat-toolbar>
-    <div class="content">
+    <div class="admin-content">
       <div class="admin-info">
-        <app-admin-info></app-admin-info>
+        <app-admin-info [user]="user"></app-admin-info>
       </div>
-      <div class="team-list">
-        <app-admin-team></app-admin-team>
-      </div>
+      <app-admin-team [user]="user"></app-admin-team>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
