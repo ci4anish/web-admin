@@ -8,3 +8,7 @@ body {
 .mat-icon{
     cursor: pointer;
 }
+
+.full-width{
+    width: 100%;
+}

@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>
+  Add teammates
+</h1>
+<div class="dialog-content">
+  <mat-form-field class="full-width">
+    <input type="text" placeholder="Search" matInput [formControl]="searchControl" [matAutocomplete]="auto">
+  </mat-form-field>
+
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let user of suggestedTeamMates" [value]="option">
+      <div (click)="addTeamMember($event, user)">{{user.displayName}}</div>
+    </mat-option>
+  </mat-autocomplete>
+  <mat-chip-list>
+    <mat-chip *ngFor="let teammate of newTeamMates" color="accent" [removable]="true" (removed)="removeTeamMate(teammate)">
+      {{teammate.displayName}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-button (click)="close(newTeamMates)">add</button>
+</div>

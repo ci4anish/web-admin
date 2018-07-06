@@ -1,4 +1,9 @@
-<div class="team-title">{{team.name}} team: </div>
+<div class="team-title">
+  {{team.name}} team:
+  <button mat-mini-fab class="add-to-team-button" (click)="openAddDialog()">
+    <mat-icon aria-label="Add teammates" *ngIf="user.is_lead">add</mat-icon>
+  </button>
+</div>
 <mat-form-field class="filter-field">
   <input matInput type="text" placeholder="Filter" [formControl]="filterFormControl">
   <button mat-button *ngIf="filterFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
