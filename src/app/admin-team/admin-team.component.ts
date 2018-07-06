@@ -48,7 +48,7 @@ export class AdminTeamComponent implements OnInit, OnChanges, AfterViewInit, OnD
     }
 
     ngOnDestroy(){
-        this.scrollContainer.removeEventListener('scrol;', this.scrollWatcher);
+        this.scrollContainer.removeEventListener('scroll', this.scrollWatcher);
         this.filterFormControlSub.unsubscribe()
     }
 
