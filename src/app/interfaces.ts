@@ -7,9 +7,11 @@ export interface User {
     lastName: string;
     phone: string;
     userType: string;
+    teamId: number;
+    is_lead: boolean;
 }
 
-export interface TeamMate {
+export interface Team {
     id: number,
     name: string
 }

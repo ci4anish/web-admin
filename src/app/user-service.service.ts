@@ -15,7 +15,7 @@ export class UserService {
 
   //TODO actually fetch user from the server
   public getUser() : Observable<User>{
-    return <Observable<User>>of(UserList[0]);
+    return <Observable<User>>of(UserList[1]);
   }
 
   public getUsers(){

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges, AfterViewInit, ElementRef, OnDestroy } from '@angular/core';
 import { AdminTeamService } from './admin-team-service.service';
-import { TeamMate } from "../interfaces";
-import { User } from "../interfaces";
+import { Team, User } from "../interfaces";
 import { FormControl } from '@angular/forms';
 import { Subscription }  from 'rxjs/index';
 import 'rxjs/add/operator/debounceTime';
@@ -17,7 +16,8 @@ export class AdminTeamComponent implements OnInit, OnChanges, AfterViewInit, OnD
 
   @Input() user: User;
 
-  teamMates: TeamMate[] = [];
+  teamMates: User[] = [];
+  team: Team;
   teamPageCounter: number = 1;
   filterFormControl = new FormControl();
   filterFormControlSub: Subscription;
@@ -32,24 +32,12 @@ export class AdminTeamComponent implements OnInit, OnChanges, AfterViewInit, OnD
   ngOnInit() {
       this.filterFormControlSub = this.filterFormControl.valueChanges
           .debounceTime(1000)
-          .subscribe(() => {
-              this.teamPageCounter = 1;
-              this.adminTeamService.getTeamMates(this.user.id, this.teamPageCounter, this.filterFormControl.value).subscribe(teamMates => {
-                  this.teamMates = teamMates;
-                  this.teamPageCounter++;
-              });
-          });
-  }
-
-  private getTeam(){
-      this.adminTeamService.getTeamMates(this.user.id, this.teamPageCounter, this.filterFormControl.value).subscribe(teamMates => {
-          this.teamMates = this.teamMates.concat(teamMates);
-          this.teamPageCounter++;
-      });
+          .subscribe(this.applyFilterSearch.bind(this));
   }
 
     ngOnChanges(changes: SimpleChanges){
         if(changes.user){
+            this.getTeamMates();
             this.getTeam();
         }
     }
@@ -72,13 +60,31 @@ export class AdminTeamComponent implements OnInit, OnChanges, AfterViewInit, OnD
 
     clearFilter(){
         this.filterFormControl.setValue('');
+        this.applyFilterSearch();
+    }
+
+    private applyFilterSearch(){
         this.teamPageCounter = 1;
-        this.getTeam();
+        this.teamMates.splice(0, this.teamMates.length);
+        this.getTeamMates();
     }
 
     private scrollWatcher(){
         if (this.scrollContainer.scrollHeight - this.scrollContainer.scrollTop === this.scrollContainer.clientHeight) {
-            this.getTeam();
+            this.getTeamMates();
         }
+    }
+
+    private getTeamMates(){
+        this.adminTeamService.getTeamMates(this.user.teamId, this.teamPageCounter, this.filterFormControl.value).subscribe(teamMates => {
+            this.teamMates = this.teamMates.concat(teamMates);
+            this.teamPageCounter++;
+        });
+    }
+
+    private getTeam(){
+        this.adminTeamService.getTeam(this.user.teamId).subscribe(team => {
+            this.team = team;
+        });
     }
 }

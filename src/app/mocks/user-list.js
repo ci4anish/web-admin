@@ -7,7 +7,8 @@ export const UserList = [
     "email": "",
     "groups": [],
     "userType": "CLIENT",
-    "displayName": "Khoo, Leon"
+    "displayName": "Khoo, Leon",
+    "teamId": 0,
   },
   {
     "id": 191,
@@ -19,7 +20,9 @@ export const UserList = [
       3
     ],
     "userType": "CLIENT",
-    "displayName": "Client, Andrew"
+    "displayName": "Client, Andrew",
+    "teamId": 0,
+    "is_lead": true
   },
   {
     "id": 190,
@@ -31,7 +34,8 @@ export const UserList = [
       1
     ],
     "userType": "STAFF",
-    "displayName": "Banerjee, Sangram"
+    "displayName": "Banerjee, Sangram",
+    "teamId": 0,
   },
   {
     "id": 189,
@@ -43,6 +47,7 @@ export const UserList = [
       1
     ],
     "userType": "STAFF",
-    "displayName": "Stevens, Andrew"
+    "displayName": "Stevens, Andrew",
+    "teamId": 0,
   }
 ]

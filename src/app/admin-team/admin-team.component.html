@@ -1,4 +1,4 @@
-<div class="team-title">Team: </div>
+<div class="team-title">{{team.name}} team: </div>
 <mat-form-field class="filter-field">
   <input matInput type="text" placeholder="Filter" [formControl]="filterFormControl">
   <button mat-button *ngIf="filterFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
@@ -8,9 +8,9 @@
 <mat-list role="list" class="team-list">
   <div *ngFor="let teamMember of teamMates">
     <mat-list-item role="listitem">
-      {{teamMember.name}}
+      {{teamMember.displayName}}
       <span class="spacer"></span>
-      <mat-icon class="example-icon" (click)="removeTeamMate(teamMember.id)">delete</mat-icon>
+      <mat-icon *ngIf="user.is_lead" class="example-icon" (click)="removeTeamMate(teamMember.id)">delete</mat-icon>
     </mat-list-item>
     <mat-divider></mat-divider>
   </div>
