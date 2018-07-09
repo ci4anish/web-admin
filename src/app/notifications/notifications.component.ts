@@ -3,6 +3,7 @@ import {NotificationsService} from '../notifications-service.service';
 import {Notification, User} from '../interfaces';
 import {Subscription} from 'rxjs/index';
 import {UserService} from '../user-service.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-notifications',
@@ -17,8 +18,11 @@ export class NotificationsComponent implements OnInit, OnDestroy, AfterViewInit 
     private scrollContainer: Element;
 
     constructor(private notificationsService: NotificationsService, private userService: UserService,
-                private elementRef: ElementRef) {
+                private elementRef: ElementRef, private router: Router) {
         this.scrollWatcher = this.scrollWatcher.bind(this);
+        this.router.routeReuseStrategy.shouldReuseRoute = function(){
+            return false;
+        }
     }
 
     ngOnInit() {

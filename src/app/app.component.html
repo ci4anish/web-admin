@@ -19,11 +19,6 @@
         <span class="notification-count-badge" *ngIf="notificationsLength > 0">{{notificationsLength}}</span>
       </div>
     </mat-toolbar>
-    <div class="admin-content">
-      <div class="admin-info">
-        <app-admin-info></app-admin-info>
-      </div>
-      <app-admin-team></app-admin-team>
-    </div>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -13,7 +13,7 @@ export const Notifications = [
 		"num_opens": 3,
 		"num_clicks": 3,
 		"type": "",
-		"recipient": 191
+		"recipient": 191,
 	},
     {
         "id": 1,

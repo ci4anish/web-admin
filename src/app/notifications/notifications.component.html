@@ -4,6 +4,7 @@
                        (click)="markAsRead(notification.id)"
                        class="notification-item"
                        *ngFor="let notification of notifications"
+                       routerLink="/notification/{{notification.id}}"
                        [ngClass]="{unread: notification.unread}">
             {{notification.description}}
             <mat-divider></mat-divider>

@@ -4,14 +4,21 @@ import {NotificationsComponent} from './notifications.component';
 import {NotificationsService} from '../notifications-service.service';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
+import {NotificationDetailComponent} from './notification-detail/notification-detail.component';
+import {RouterModule} from '@angular/router';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
     imports: [
         CommonModule,
         MatListModule,
-        MatIconModule
+        MatIconModule,
+        RouterModule,
+        MatButtonModule,
+        MatCardModule
     ],
-    declarations: [NotificationsComponent],
+    declarations: [NotificationsComponent, NotificationDetailComponent],
     exports: [NotificationsComponent],
     providers: [NotificationsService]
 })

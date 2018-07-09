@@ -31,7 +31,10 @@ export class NotificationsService {
     // TODO actually remove user notification the user
     public deleteNotification(id: number): Observable<Notification> {
         const result = Notifications.splice(Notifications.indexOf(Notifications.find(notification => notification.id === id)), 1);
-        return <Observable<Notification>>of(result[0]).map(n => { this.notificationChange.next(); return n; });
+        return <Observable<Notification>>of(result[0]).map(n => {
+            this.notificationChange.next();
+            return n;
+        });
         // this.http.delete<User>('Notification').map(n => { this.notificationChange.next(); return n; });
     }
 
@@ -44,7 +47,16 @@ export class NotificationsService {
             }
             return false;
         });
-        return of(result).map(n => { this.notificationChange.next(); return n; });
+        return of(result).map(n => {
+            this.notificationChange.next();
+            return n;
+        });
         // return this.http.post<User[]>('URL', body, httpOptions).map(n => { this.notificationChange.next(); return n; });
+    }
+
+    // TODO actually get notification by id from the server
+    public getNotificationDetails(id: number): Observable<Notification> {
+        return of(Notifications.find(n => n.id === id));
+        // return this.http.get<number>('URL');
     }
 }
