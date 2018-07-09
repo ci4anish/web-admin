@@ -1,0 +1,11 @@
+<mat-list role="list" class="notification-list">
+    <mat-list-item role="listitem"
+                   (click)="markAsRead(notification.id)"
+                   class="notification-item"
+                   *ngFor="let notification of notifications"
+                   [ngClass]="{unread: notification.unread}">
+        {{notification.description}}
+        <mat-divider></mat-divider>
+        <mat-icon class="delete-notification" (click)="deleteNotification($event, notification.id)">delete</mat-icon>
+    </mat-list-item>
+</mat-list>

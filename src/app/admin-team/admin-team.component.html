@@ -1,7 +1,7 @@
 <div class="team-title">
-  {{team.name}} team:
+  {{team && team.name}} team:
   <button mat-mini-fab class="add-to-team-button" (click)="openAddDialog()">
-    <mat-icon aria-label="Add teammates" *ngIf="user.is_lead">add</mat-icon>
+    <mat-icon aria-label="Add teammates" *ngIf="user && user.is_lead">add</mat-icon>
   </button>
 </div>
 <mat-form-field class="filter-field">
@@ -15,7 +15,7 @@
     <mat-list-item role="listitem">
       {{teamMember.displayName}}
       <span class="spacer"></span>
-      <mat-icon *ngIf="user.is_lead" class="example-icon" (click)="removeTeamMate(teamMember.id)">delete</mat-icon>
+      <mat-icon *ngIf="user && user.is_lead" class="example-icon" (click)="removeTeamMate(teamMember.id)">delete</mat-icon>
     </mat-list-item>
     <mat-divider></mat-divider>
   </div>

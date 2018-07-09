@@ -12,6 +12,15 @@ export interface User {
 }
 
 export interface Team {
-    id: number,
-    name: string
+    id: number;
+    name: string;
+}
+
+export interface Notification {
+    id: number;
+    level: string;
+    unread: boolean;
+    description: string;
+    timestamp: string;
+    data: string;
 }

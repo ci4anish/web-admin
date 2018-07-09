@@ -3,10 +3,10 @@
     <mat-toolbar color="primary">
       <span>Notifications</span>
       <span class="spacer"></span>
-      <mat-icon class="example-icon" (click)="sidenav.close()">close</mat-icon>
+      <mat-icon (click)="sidenav.close()">close</mat-icon>
     </mat-toolbar>
-    <div style="width: 400px">
-      Here will be notifications
+    <div class="notification-bar">
+      <app-notifications></app-notifications>
     </div>
   </mat-sidenav>
 
@@ -14,13 +14,16 @@
     <mat-toolbar color="primary" class="admin-header">
       <span>Web admin</span>
       <span class="spacer"></span>
-      <mat-icon class="example-icon" (click)="sidenav.toggle()">notifications</mat-icon>
+      <div class="notification-info-wrapper" (click)="sidenav.toggle()">
+        <mat-icon>notifications</mat-icon>
+        <span class="notification-count-badge" *ngIf="notificationsLength > 0">{{notificationsLength}}</span>
+      </div>
     </mat-toolbar>
     <div class="admin-content">
       <div class="admin-info">
-        <app-admin-info [user]="user"></app-admin-info>
+        <app-admin-info></app-admin-info>
       </div>
-      <app-admin-team [user]="user"></app-admin-team>
+      <app-admin-team></app-admin-team>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

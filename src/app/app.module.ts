@@ -4,12 +4,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
-import { AdminTeamModule } from "./admin-team/admin-team.module";
-import { AdminInfoModule } from "./admin-info/admin-info.module";
-import { UserService } from "./user-service.service";
+import { AdminTeamModule } from './admin-team/admin-team.module';
+import { AdminInfoModule } from './admin-info/admin-info.module';
+import { NotificationsModule } from './notifications/notifications.module';
+import { UserService } from './user-service.service';
+import { NotificationsService } from './notifications-service.service';
 
 @NgModule({
   declarations: [
@@ -22,10 +25,12 @@ import { UserService } from "./user-service.service";
       MatIconModule,
       AdminTeamModule,
       AdminInfoModule,
-      MatSidenavModule
+      MatSidenavModule,
+      NotificationsModule,
+      HttpClientModule
   ],
   exports: [],
-  providers: [UserService],
+  providers: [UserService, NotificationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,33 +1,34 @@
-import {Component, OnInit, Input, SimpleChanges, OnChanges, AfterViewInit, ElementRef, OnDestroy} from '@angular/core';
+import {Component, OnInit, AfterViewInit, ElementRef, OnDestroy} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {AdminTeamService} from './admin-team-service.service';
+import {UserService} from '../user-service.service';
 import {AddTeammateDialogComponent} from './add-teammate-dialog/add-teammate-dialog.component';
-import {Team, User} from "../interfaces";
+import {Team, User} from '../interfaces';
 import {FormControl} from '@angular/forms';
 import {Subscription} from 'rxjs/index';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/throttleTime';
-import 'rxjs/add/observable/fromEvent'
+import 'rxjs/add/observable/fromEvent';
 
 @Component({
     selector: 'app-admin-team',
     templateUrl: './admin-team.component.html',
     styleUrls: ['./admin-team.component.css']
 })
-export class AdminTeamComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
-
-    @Input() user: User;
-
+export class AdminTeamComponent implements OnInit, AfterViewInit, OnDestroy {
+    user: User;
     teamMates: User[] = [];
     team: Team;
-    teamPageCounter: number = 1;
     filterFormControl = new FormControl();
-    filterFormControlSub: Subscription;
+    private teamPageCounter: number = 1;
+    private filterFormControlSub: Subscription;
+    private userSub: Subscription;
 
 
     private scrollContainer: Element;
 
-    constructor(private adminTeamService: AdminTeamService, private elementRef: ElementRef, public dialog: MatDialog) {
+    constructor(private adminTeamService: AdminTeamService, private userService: UserService,
+                private elementRef: ElementRef, public dialog: MatDialog) {
         this.scrollWatcher = this.scrollWatcher.bind(this);
     }
 
@@ -35,13 +36,11 @@ export class AdminTeamComponent implements OnInit, OnChanges, AfterViewInit, OnD
         this.filterFormControlSub = this.filterFormControl.valueChanges
             .debounceTime(1000)
             .subscribe(this.applyFilterSearch.bind(this));
-    }
-
-    ngOnChanges(changes: SimpleChanges) {
-        if (changes.user) {
+        this.userSub = this.userService.getUser().subscribe(user => {
+            this.user = user;
             this.getTeamMates();
             this.getTeam();
-        }
+        });
     }
 
     ngAfterViewInit() {
@@ -51,7 +50,8 @@ export class AdminTeamComponent implements OnInit, OnChanges, AfterViewInit, OnD
 
     ngOnDestroy() {
         this.scrollContainer.removeEventListener('scroll', this.scrollWatcher);
-        this.filterFormControlSub.unsubscribe()
+        this.filterFormControlSub.unsubscribe();
+        this.userSub.unsubscribe();
     }
 
     removeTeamMate(id: number) {
@@ -72,7 +72,7 @@ export class AdminTeamComponent implements OnInit, OnChanges, AfterViewInit, OnD
         });
 
         dialogRef.afterClosed().subscribe(teamMatesToAdd => {
-            if(teamMatesToAdd && teamMatesToAdd.length > 0){
+            if (teamMatesToAdd && teamMatesToAdd.length > 0) {
                 this.adminTeamService.addTeamMates(this.user, teamMatesToAdd.map(user => user.id)).subscribe(addedUsers => {
                     this.clearFilter();
                 });
