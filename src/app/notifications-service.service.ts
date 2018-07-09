@@ -19,7 +19,7 @@ export class NotificationsService {
     public getNotifications(user: User, page: number): Observable<Notification[]> {
         return <Observable<Notification[]>>of(Notifications.filter(notification => {
             return notification.recipient === user.id;
-        }).slice(page * 10 - 10, page * 10));
+        }).slice(page * 25 - 25, page * 25));
         // return this.http.get<Notification[]>('URL');
     }
 

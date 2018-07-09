@@ -16,3 +16,14 @@
 .mat-list-item-content{
     padding-right: 30px;
 }
+
+:host{
+    height: 100%;
+    display: block;
+}
+
+.scroller-wrapper{
+    height: 100%;
+    overflow: scroll;
+    max-height: 1150px;
+}
