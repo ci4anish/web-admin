@@ -5,13 +5,12 @@ import {of} from 'rxjs';
 import {Notification, User} from './interfaces';
 import 'rxjs/add/operator/map';
 import {HttpClient} from '@angular/common/http';
-import {Subject} from 'rxjs/index';
 
 @Injectable({
     providedIn: 'root'
 })
 export class NotificationsService {
-    notificationChange: Subject = new Subject();
+    notificationChange: Subject<void> = new Subject();
 
     constructor(private http: HttpClient) {
     }
